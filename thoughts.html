@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Serif:ital@0;1&family=News+Cycle:wght@400;700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>ADELIYA - Thoughts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Instrument Serif", serif;
+        }
+
+        body {
+            background-color: #13120C;
+            color: #F8C3DA;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 240px;
+            padding: 40px 20px;
+            background-color: #CCF5AC;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo img {
+            width: 80px; /* or whatever size you prefer */
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }        
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-size: 25px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #843B62;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+        }
+
+        .categories {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category {
+            text-decoration: none;
+            color: #13120C;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+            font-style: italic;
+        }
+        .category::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #843B62;
+            transition: width 0.3s;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 240px;
+            padding: 40px;
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        /* Blog/Thoughts Styles */
+        .thoughts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .thought-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .thought-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .thought-img {
+            width: 100%;
+            height: 200px;
+            background-color: #eee;
+            position: relative;
+        }
+
+        .thought-img::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 60px;
+            height: 2px;
+            background-color: #333;
+            transform: translateX(-50%);
+        }
+
+        .thought-info {
+            padding: 20px;
+        }
+
+        .thought-date {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .thought-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .thought-excerpt {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: #666;
+        }
+
+        /* Featured Article */
+        .featured-thought {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+        }
+
+        .featured-thought-content {
+            padding: 30px;
+        }
+
+        .featured-label {
+            display: inline-block;
+            background-color: #CCF5AC;
+            color: #13120C;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .featured-title {
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: #843B62;
+            
+        }
+
+        .featured-excerpt {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #13120C;
+            margin-bottom: 20px;
+            font-family: "DM Sans", sans serif;
+        }
+
+        .featured-img {
+            height: 400px;
+            width: auto;
+            background-color: #eee;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;  
+        }
+
+        .featured-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #333;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .navbar {
+                width: 200px;
+            }
+            .main-content {
+                margin-left: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                transform: translateX(-100%);
+                width: 240px;
+            }
+            .navbar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 80px 20px 20px;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            /* Mobile Navigation - at the top */
+            .navbar.mobile {
+                transform: translateX(0);
+                width: 100%;
+                height: auto;
+                position: fixed;
+                top: 0;
+                left: 0;
+                flex-direction: row;
+                padding: 15px;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .navbar.mobile .logo {
+                margin-bottom: 0;
+            }
+            
+            .navbar.mobile .nav-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                padding: 20px;
+                flex-direction: row;
+                justify-content: space-around;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+            
+            .navbar.mobile.active .nav-links {
+                display: flex;
+            }
+            
+            .navbar.mobile .categories {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .thoughts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar.mobile .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div>
+            <a href="index.html" class="logo"><img src="media/logo.png" alt="logo"></a>
+            <div class="nav-links">
+                <a href="cv.html" class="nav-link">CV</a>
+                <a href="thoughts.html" class="nav-link">THOUGHTS</a>
+                <a href="projects.html" class="nav-link">PROJECTS</a>
+                <a href="about.html" class="nav-link">ABOUT</a>
+                <a href="contact.html" class="nav-link">CONTACT</a>
+            </div>
+        </div>
+        <div class="categories">
+            <a href="projects.html?category=web" class="category">WEB</a>
+            <a href="projects.html?category=physical" class="category">PHYSICAL</a>
+            <a href="projects.html?category=film" class="category">FILM</a>
+            <a href="projects.html?category=design" class="category">DESIGN</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="section">
+            <h1 class="section-title">THOUGHTS</h1>
+            
+            <!-- Featured Article -->
+            <div class="featured-thought">
+                <div class="featured-img">
+                    <img src="media/nomad.png" alt="nomad">
+                </div>
+                <div class="featured-thought-content">
+                    <span class="featured-label">Featured</span>
+                    <h2 class="featured-title">What it takes to be a nomad in Astana?</h2>
+                    <p class="featured-excerpt">Understand how wayfinding is standing at a core of kazakh nomadic culture.</p>
+                    <a href="blog-evolution-of-web-design.html" class="read-more">Read More →</a>
+                </div>
+            </div>
+            
+            <!-- Blog Grid -->
+            <!-- <div class="thoughts-grid">
+                <div class="thought-card">
+                    <div class="thought-img"></div>
+                    <div class="thought-info">
+                        <div class="thought-date">May 1, 2025</div>
+                        <h3 class="thought-title">The Evolution of Web Design</h3>
+                        <p class="thought-excerpt">Reflecting on how web design has transformed over the decades and where it might be heading in the near future.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="thought-card">
+                    <div class="thought-img"></div>
+                    <div class="thought-info">
+                        <div class="thought-date">April 15, 2025</div>
+                        <h3 class="thought-title">Sustainable Design Practices</h3>
+                        <p class="thought-excerpt">How designers can incorporate eco-friendly principles into their work, from digital product design to physical spaces.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="thought-card">
+                    <div class="thought-img"></div>
+                    <div class="thought-info">
+                        <div class="thought-date">April 3, 2025</div>
+                        <h3 class="thought-title">Visual Storytelling in Film</h3>
+                        <p class="thought-excerpt">Analyzing how visual elements create narrative meaning in contemporary cinema and what designers can learn from filmmakers.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    
+    // Check window width and apply appropriate classes
+    function checkWindowSize() {
+        if (window.innerWidth <= 768) {
+            navbar.classList.add('mobile');
+        } else {
+            navbar.classList.remove('mobile');
+            navbar.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+    }
+    
+// Run on page load
+    checkWindowSize();
+    
+    // Run on window resize
+    window.addEventListener('resize', checkWindowSize);
+    
+    // Toggle menu on click
+    menuToggle.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link (mobile)
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navbar.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    });
+    
+    // Highlight current page in navigation
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+        
+        // Filter projects based on URL parameter if present
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        
+        if (categoryParam) {
+            filterProjects(categoryParam);
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === categoryParam) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.category').forEach(cat => {
+                if (cat.getAttribute('href').includes(categoryParam)) {
+                    cat.classList.add('active');
+                } else {
+                    cat.classList.remove('active');
+                }
+            });
+        }
+    });
+    
+    //Project filtering
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.dataset.filter;
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            filterProjects(filter);
+        });
+    });
+    
+    function filterProjects(filter) {
+        const projects = document.querySelectorAll('.project-card');
+        
+        projects.forEach(project => {
+            if (filter === 'all') {
+                project.style.display = 'block';
+            } else if (project.dataset.category === filter) {
+                project.style.display = 'block';
+            } else {
+                project.style.display = 'none';
+            }
+        });
+    }
+</script>
+</body>
+</html>

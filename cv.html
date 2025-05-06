@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Serif:ital@0;1&family=News+Cycle:wght@400;700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>ADELIYA - CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* font-family: "Instrument Serif", serif; */
+        }
+
+        body {
+            background-color: #13120C;
+            color: #F8C3DA;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 240px;
+            padding: 40px 20px;
+            background-color: #CCF5AC;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            font-family: "Instrument Serif", serif;
+        }
+
+        .logo img {
+            width: 80px; /* or whatever size you prefer */
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }        
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-size: 25px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #843B62;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+        }
+
+        .categories {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .category {
+            text-decoration: none;
+            color: #13120C;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+            font-style: italic;
+        }
+        .category::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #843B62;
+            transition: width 0.3s;
+        }
+
+        .category:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 220px;
+            padding: 0;
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Header with background */
+        .cv-header {
+            height: 40vh;
+            background-color: #F8C3DA;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            position: relative;
+            margin-top: -40px;
+        }
+
+        .cv-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .cv-header-content {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 100%;
+        }
+
+        .cv-title {
+            font-size: 60px;
+            color: #13120C;
+            position: relative;
+            line-height: 1;
+            font-family: "Instrument Serif", serif;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .cv-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            position: relative;
+            opacity: 0.9;
+        }
+
+        .header-download-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #13120C;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 55px;
+            margin-right: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-download-btn:hover {
+            background-color: rgba(19,18,12,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header-download-btn svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+        
+        .header-download-btn:hover svg {
+            transform: translateY(3px);
+        }
+
+
+        /* Timeline-based CV Content */
+        .cv-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 60px;
+            background-color: #13120C;
+        }
+
+        .cv-section {
+            position: relative;
+        }
+
+        .cv-section-title {
+            font-size: 1.8rem;
+            color: #CCF5AC;
+            margin-bottom: 40px;
+            display: inline-block;
+            position: relative;
+            font-family: "Instrument Serif", serif;
+            font-weight: 400;
+        }
+
+        .cv-section-title::after {
+            content: '';
+            position: absolute;
+            width: 140%;
+            height: 1px;
+            background-color: rgba(255, 83, 61, 0.3);
+            bottom: -10px;
+            left: 0;
+        }
+
+        /* Timeline Style */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #CCF5AC;
+            left: -36px;
+            top: 8px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            color: #F5F5F5;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .timeline-subtitle {
+            font-size: 1.1rem;
+            color: #CCF5AC;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            padding: 3px 10px;
+            border-radius: 4px;
+            background: rgba(132, 59, 98, 0.6);
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: "DM Sans", sans-serif;
+            font-weight: 300;
+        }
+
+        .timeline-desc ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+
+        .timeline-desc li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Skills Section
+        .skills-container {
+            margin-top: 10px;
+        } */
+
+        .skills-category {
+            margin-bottom: 30px;
+        }
+
+        .skills-category-title {
+            font-size: 1.2rem;
+            color: #F8C3DA;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: #CCF5AC;
+            color: #13120C;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            /* letter-spacing: 0.5px; */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+ 
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .cv-title {
+                font-size: 4rem;
+            }
+            .cv-content {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .navbar {
+                width: 180px;
+            }
+            .main-content {
+                margin-left: 180px;
+            }
+            .cv-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                transform: translateX(-100%);
+                width: 240px;
+            }
+            .navbar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 80px 20px 20px;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            /* Mobile Navigation - at the top */
+            .navbar.mobile {
+                transform: translateX(0);
+                width: 100%;
+                height: auto;
+                position: fixed;
+                top: 0;
+                left: 0;
+                flex-direction: row;
+                padding: 15px;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .navbar.mobile .logo {
+                margin-bottom: 0;
+            }
+            
+            .navbar.mobile .nav-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                padding: 20px;
+                flex-direction: row;
+                justify-content: space-around;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+            
+            .navbar.mobile.active .nav-links {
+                display: flex;
+            }
+            
+            .navbar.mobile .categories {
+                display: none;
+            }
+
+                        .cv-header {
+                padding: 30px;
+            }
+            
+            .cv-title {
+                font-size: 3rem;
+            }
+            
+            .cv-content {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar.mobile .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div>
+            <a href="index.html" class="logo"><img src="media/logo.png" alt="logo"></a>
+            <div class="nav-links">
+                <a href="cv.html" class="nav-link">CV</a>
+                <a href="thoughts.html" class="nav-link">THOUGHTS</a>
+                <a href="projects.html" class="nav-link">PROJECTS</a>
+                <a href="about.html" class="nav-link">ABOUT</a>
+                <a href="contact.html" class="nav-link">CONTACT</a>
+            </div>
+        </div>
+        <div class="categories">
+            <a href="projects.html?category=web" class="category">WEB</a>
+            <a href="projects.html?category=physical" class="category">PHYSICAL</a>
+            <a href="projects.html?category=film" class="category">FILM</a>
+            <a href="projects.html?category=design" class="category">DESIGN</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header Section with Background -->
+        <header class="cv-header">
+            <div class="cv-header-content">
+                <div class="cv-title-container">
+                    <h1 class="cv-title">CURRICULUM VITAE</h1>
+                    <p class="cv-subtitle">Interactive Media Designer with experience in digital design, UI/UX, and multimedia projects.</p>
+                </div>
+                <a href="media/cv.pdf" class="header-download-btn" title="Download CV">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                </a>
+            </div>
+        </header>
+
+        <!-- CV Content -->
+        <div class="cv-content">
+            <!-- Education Section -->
+            <section class="cv-section">
+                <h2 class="cv-section-title">EDUCATION</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Bachelor of Arts in Interactive Media</h3>
+                        <div class="timeline-subtitle">New York University Abu Dhabi</div>
+                        <div class="timeline-date">2024 - Present</div>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>GPA: 4.0</li>
+                                <li>Completed IM Lab training & Audio, video, theatrical lighting systems training</li>
+                                <li>Hosted workshop about Figma application on behalf of Interactive Media Program</li>
+                                <li>Participated in Attitude Fall & Spring Recitals in Hip-Hop and Contemporary performances</li>
+                                <li>Currently part of A Capella Ensemble with Professor Churchill</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Diploma Program Student</h3>
+                        <div class="timeline-subtitle">Nazarbayev Intellectual School IB Astana</div>
+                        <div class="timeline-date">2022 - 2024</div>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>GPA: 4.97/5</li>
+                                <li>Higher Level subjects: Economics, Math Applications & Interpretations, English B</li>
+                                <li>Standard Level subjects: Biology, Digital Society, Russian A</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="cv-section">
+                <h2 class="cv-section-title">SKILLS</h2>
+                <div class="skills-container">
+                    <div class="skills-category">
+                        <h3 class="skills-category-title">DESIGN</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">UI/UX Design</span>
+                            <span class="skill-tag">Graphic Design</span>
+                            <span class="skill-tag">Typography</span>
+                        </div>
+                    </div>
+                    <div class="skills-category">
+                        <h3 class="skills-category-title">SOFTWARE</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Adobe Creative Suite</span>
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Davinci Resolve</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Tilda</span>
+                        </div>
+                    </div>
+                    <div class="skills-category">
+                        <h3 class="skills-category-title">OTHER</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Singing</span>
+                            <span class="skill-tag">Dancing</span>
+                            <span class="skill-tag">Calligraphy</span>
+                            <span class="skill-tag">Content Management</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Work Experience Section -->
+            <section class="cv-section">
+                <h2 class="cv-section-title">WORK EXPERIENCE</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Graphic Designer</h3>
+                        <div class="timeline-subtitle">Freshman Academy</div>
+                        <div class="timeline-date">04/2023 - 09/2023</div>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>Designed admissions-related social media posters (Instagram, Telegram channels)</li>
+                                <li>Synched with the Marketing team weekly, worked on education-themed content plan</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Business Programs Office Intern</h3>
+                        <div class="timeline-subtitle">Astana Hub</div>
+                        <div class="timeline-date">07/2022 - 09/2022</div>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>Designed and integrated 4 Business Programs' homepages on Tilda</li>
+                                <li>Contacted ~230 likely participants and attracted 50 startup participants</li>
+                                <li>Created PR content for social media for Central Asia audience</li>
+                                <li>Developed custom products (sticker packs, tote bags)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Curator</h3>
+                        <div class="timeline-subtitle">Silicon Valley Camp</div>
+                        <div class="timeline-date">01/2021 - 08/2021</div>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>Worked with mentors from Silicon Valley (VCs, entrepreneurs) to deliver business program for teenagers</li>
+                                <li>Designed promotional materials (IG posts, posters)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Content Manager</h3>
+                        <div class="timeline-subtitle">EduDo</div>
+                        <div class="timeline-date">05/2021 - 07/2021</div>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>Created and integrated 100+ educational videos to new EduDo social platform</li>
+                                <li>Corresponded with and attracted 50+ potential creators to the platform</li>
+                                <li>Weekly updated content plan and developed digital marketing strategy for entry to Central Asian countries</li>
+                                <li>Hosted 'happy hours' for team building</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects/Achievements Section -->
+            <section class="cv-section">
+                <h2 class="cv-section-title">PROJECTS & ACHIEVEMENTS</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Figma Workshop Host</h3>
+                        <div class="timeline-subtitle">NYU Abu Dhabi</div>
+                        <div class="timeline-date">2024</div>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>Led interactive session on Figma fundamentals and UI/UX principles</li>
+                                <li>Created educational materials and exercises for participants</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navbar = document.querySelector('.navbar');
+        
+        // Check window width and apply appropriate classes
+        function checkWindowSize() {
+            if (window.innerWidth <= 768) {
+                navbar.classList.add('mobile');
+            } else {
+                navbar.classList.remove('mobile');
+                navbar.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        }
+        
+        // Run on page load
+        checkWindowSize();
+        
+        // Run on window resize
+        window.addEventListener('resize', checkWindowSize);
+        
+        // Toggle menu on click
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link (mobile)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navbar.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+        
+        // Highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll animation for timeline items
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(item);
+            });
+
+            document.querySelectorAll('.skills-category').forEach(item => {
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>

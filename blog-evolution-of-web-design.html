@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Serif:ital@0;1&family=News+Cycle:wght@400;700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>The Evolution of Web Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #13120C;
+            color: #F8C3DA;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 240px;
+            padding: 40px 20px;
+            background-color: #CCF5AC;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            font-family: "Instrument Serif", serif;
+        }
+
+        .logo img {
+            width: 80px; 
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }        
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-size: 25px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #843B62;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+        }
+
+        .categories {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category {
+            text-decoration: none;
+            color: #13120C;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+            font-style: italic;
+            font-family: "Instrument Serif", serif;
+        }
+        .category::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #843B62;
+            transition: width 0.3s;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 240px;
+            padding: 40px;
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Blog Post Styles */
+        .blog-post {
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: "Instrument Serif", serif;
+        }
+
+        .post-header {
+            margin-bottom: 30px;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 14px;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .post-date {
+            margin-right: 15px;
+            color: #F8C3DA;
+        }
+
+        .post-category {
+            display: inline-block;
+            background-color: #CCF5AC;
+            color: #13120C;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .post-title {
+            font-size: 36px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .post-featured-img {
+            width: 100%;
+            height: 400px;
+            background-color: #eee;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .post-content {
+            line-height: 1.8;
+            color: #f0f0f0;
+            font-size: 18px;
+            font-family: "DM Sans", sans-serif;
+            font-weight: 300;
+        }
+
+        .post-content p {
+            margin-bottom: 25px;
+        }
+
+        .post-content h2 {
+            font-size: 28px;
+            margin: 40px 0 20px;
+        }
+
+        .post-content h3 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+        }
+
+        .post-content blockquote {
+            margin: 30px 0;
+            padding: 20px 30px;
+            border-left: 4px solid #333;
+            background-color: #f0f0f0;
+            font-style: italic;
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 20px 0 20px 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 10px;
+        }
+
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 40px 0;
+        }
+
+        .post-tag {
+            background-color: #CCF5AC;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 18px;
+            color: #13120C;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .post-tag:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Author Section */
+        .post-author {
+            display: flex;
+            align-items: center;
+            padding: 30px;
+            margin: 40px 0;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .author-img {
+    width: 120px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.author-img img {
+    width: 200%;
+    height: 200%;
+    object-fit: cover;
+}
+
+
+        .author-info h4 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .author-bio {
+            color: #13120C;
+            font-size: 14px;
+            line-height: 1.5;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .go-back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #666;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .go-back-link:hover {
+            color: #CCF5AC;
+        }
+
+        .go-back-icon {
+            margin-right: 8px;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #333;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .navbar {
+                width: 200px;
+            }
+            .main-content {
+                margin-left: 200px;
+            }
+            .related-posts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                transform: translateX(-100%);
+                width: 240px;
+            }
+            .navbar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 80px 20px 20px;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            /* Mobile Navigation - at the top */
+            .navbar.mobile {
+                transform: translateX(0);
+                width: 100%;
+                height: auto;
+                position: fixed;
+                top: 0;
+                left: 0;
+                flex-direction: row;
+                padding: 15px;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .navbar.mobile .logo {
+                margin-bottom: 0;
+            }
+            
+            .navbar.mobile .nav-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                padding: 20px;
+                flex-direction: row;
+                justify-content: space-around;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+            
+            .navbar.mobile.active .nav-links {
+                display: flex;
+            }
+            
+            .navbar.mobile .categories {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .related-posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .post-title {
+                font-size: 28px;
+            }
+            
+            .navbar.mobile .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .post-author {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-img {
+                margin: 0 0 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div>
+            <a href="index.html" class="logo"><img src="media/logo.png" alt="logo"></a>
+            <div class="nav-links">
+                <a href="cv.html" class="nav-link">CV</a>
+                <a href="thoughts.html" class="nav-link">THOUGHTS</a>
+                <a href="projects.html" class="nav-link">PROJECTS</a>
+                <a href="about.html" class="nav-link">ABOUT</a>
+                <a href="contact.html" class="nav-link">CONTACT</a>
+            </div>
+        </div>
+        <div class="categories">
+            <a href="projects.html?category=web" class="category">WEB</a>
+            <a href="projects.html?category=physical" class="category">PHYSICAL</a>
+            <a href="projects.html?category=film" class="category">FILM</a>
+            <a href="projects.html?category=design" class="category">DESIGN</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <article class="blog-post">
+            <a href="thoughts.html" class="go-back-link">
+                <span class="go-back-icon">←</span> Back to Thoughts
+            </a>
+            
+            <header class="post-header">
+                <div class="post-meta">
+                    <span class="post-date">May 1, 2025</span>
+                    <span class="post-category">Wayfinding</span>
+                </div>
+                <h1 class="post-title">What it takes to be a nomad in Astana?</h1>
+            </header>
+            
+            <div class="post-featured-img">
+                <img src="media/nomad.png" alt="nomad">
+            </div>
+            
+            <div class="post-content">
+                <p>The core of Kazakh culture is nomadic heritage. Nomads are people who change their place of habitation. Our Kazakh ancestors migrated throughout the year with their livestock as a means of survival. Today, it may be hard to claim that there is an influence of Kazakh nomadic heritage on modern people, because nomads lived here a couple of centuries before us. But, I want to reflect on how I can relate to nomads while finding a way in my city Astana.</p>
+                <p>Astana is a relatively young city that originated less than 200 years ago and was made a capital in 1997. Astana can be considered a town that was rebuilt, as the government tried to modify it to suit the status of being a capital city. Therefore, there is not much of a rich historic trace left in the city, except for the right bank. But people living here carry the history with them. There is a quote of a writer Bernard Rudofsky in Gibson’s Wayfinding Handbook: “Altogether, cities correspond closely to the ideas and ideals of their inhabitants. They are the tangible expression of a nation’s spirit, or lack of spirit.” If this statement is true, can we say that modern Kazakh citizens’ nation spirit is still nomadic and not bureaucratic? The city spirit that is based around office and government buildings in the center of the city, shopping centers and residential areas describes the ideals of inhabitants that try to make a living by working hard. It’s a very widespread notion that Astana is the city of government officials. But, is it that straightforward?</p>
+                <p>While people more than two centuries back didn’t have an opportunity to stay in one place and had to move around the steppes finding suitable living places because they cared after their livestock, it is impossible to have the modern community members doing the same. Now, people have more binding and constraining commitments, such as jobs, family that don’t allow them to change and adapt really quickly. In today’s realities, change is a stress and is avoided, just as the sense of disorientation in wayfinding. The nomadic lifestyle didn’t reach today’s setting, however there is a nomadic mindset that it used and reflected in many Kazakhstan citizens’ minds.</p>
+                <p>As a resident of Astana, you cannot travel big distances around the city by foot, you would either use a bus or a car/taxi. Astana challenges wayfinding, since people have to spend at least 4 months of the year in a complete cold reaching -30°C, which means weather forces you to take a car and travel directly to the destination using a navigator. Even though Astana is built mostly for car travel, Astana’s inhabitants, including me, are still okay with travelling long distances around the city by foot just to get to work or to other places, because there is still nomadic resilience and endurance (or stubbornness as well) inside us.</p>
+                <p>Our Kazakh ancestors lived in communes, provinces before urbanization happened. Due to their confident knowledge of the area, they didn’t use maps. Nomadic people followed the livestock or explored the surroundings by themselves, while generations after nomads used maps only to look at the settlements and cities around them, rather than exploring their own territory, because it was small and familiar. First and foremost, nomadic people had strong social connections with their neighbouring families. The same pattern can be seen in the current citizens’ mental maps. For example, my parents locate places in Astana based on how close they are to the homes of our friends or relatives. Similarly, the way many Kazakh people see the city space is through social connections. Therefore, one location may seem more familiar than another if someone you are connected to lives nearby.</p>
+                <p>Astana certainly cannot be claimed as a nomadic destination, because it’s completely the opposite: the city has a specific order. Similarly to Paris, Astana is divided to the left bank and right bank by the River Yessil. As you can see there are three main avenues or arteries of the city’s left bank. By following them you certainly would get yourself near the most important landmarks, such as the EXPO 2017 exhibition, Bayterek monument, Khan-Shatyr shopping center. All of these landmarks are big enough to be noticed from a distance. Therefore, the landmark navigation is in place of being lost in streets and locations. Yet, I want to say that it is insane to imagine a boundless steppes setting being replaced with a city with skyscrapers and how people adapted to this new environment so quickly and started to navigate them, just like nomads adapting in their new settlement.</p>
+            </div>
+            
+            <div class="post-tags">
+                <a href="#" class="post-tag">Wayfinding</a>
+                <a href="#" class="post-tag">Design</a>
+            </div>
+            
+            <div class="post-author">
+                <div class="author-img">
+                    <img src="media/adeliya.jpg" alt="adeliya">
+                </div>
+                <div class="author-info">
+                    <h4>ADELIYA</h4>
+                    <p class="author-bio">Designer and creative thinker exploring the intersections of digital and physical design. Passionate about creating meaningful experiences that bridge technology and human connection.</p>
+                </div>
+            </div>
+            
+        </article>
+    </main>
+    
+    <a href="blog-evolution-of-web-design.html" class="back-to-top">↑</a>
+
+    <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    
+    // Check window width and apply appropriate classes
+    function checkWindowSize() {
+        if (window.innerWidth <= 768) {
+            navbar.classList.add('mobile');
+        } else {
+            navbar.classList.remove('mobile');
+            navbar.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+    }
+    
+    // Run on page load
+    checkWindowSize();
+    
+    // Run on window resize
+    window.addEventListener('resize', checkWindowSize);
+    
+    // Toggle menu on click
+    menuToggle.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link (mobile)
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navbar.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    });
+    
+    // Back to top button
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+    
+    backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Highlight current page in navigation
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    });
+    </script>
+</body>
+</html>
