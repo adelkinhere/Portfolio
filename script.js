@@ -1,8 +1,8 @@
-        // Mobile menu toggle
+        // mobile menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const navbar = document.querySelector('.navbar');
         
-        // Check window width and apply appropriate classes
+        // check window width and apply appropriate classes
         function checkWindowSize() {
             if (window.innerWidth <= 768) {
                 navbar.classList.add('mobile');
@@ -13,19 +13,19 @@
             }
         }
         
-        // Run on page load
+        // run on page load
         checkWindowSize();
         
-        // Run on window resize
+        // run on window resize
         window.addEventListener('resize', checkWindowSize);
         
-        // Toggle menu on click
+        // toggle menu on click
         menuToggle.addEventListener('click', () => {
             navbar.classList.toggle('active');
             menuToggle.classList.toggle('active');
         });
         
-        // Close menu when clicking on a link (mobile)
+        // close menu when clicking on a link (mobile)
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
@@ -35,7 +35,7 @@
             });
         });
         
-        // Highlight current page in navigation
+        // highlight current page in navigation
         document.addEventListener('DOMContentLoaded', () => {
             const currentPage = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav-link').forEach(link => {
@@ -46,7 +46,7 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle functionality
+            // mobile menu toggle functionality
             const menuToggle = document.querySelector('.menu-toggle');
             const navbar = document.querySelector('.navbar');
             
@@ -55,7 +55,7 @@
                 navbar.classList.toggle('active');
             });
             
-            // Custom cursor
+            // custom cursor
             const cursor = document.querySelector('.cursor');
             const cursorFollower = document.querySelector('.cursor-follower');
             
@@ -63,7 +63,7 @@
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
                 
-                // Add a slight delay to follower
+                // add a slight delay to follower
                 setTimeout(function() {
                     cursorFollower.style.left = e.clientX + 'px';
                     cursorFollower.style.top = e.clientY + 'px';
@@ -80,7 +80,7 @@
                 cursorFollower.style.transform = 'scale(1)';
             });
             
-            // Add hover effect to all links
+            // add hover effect to all links
             const links = document.querySelectorAll('a');
             links.forEach(link => {
                 link.addEventListener('mouseenter', function() {
@@ -94,7 +94,7 @@
                 });
             });
             
-            // Create and animate letter A's
+            // create and animate letter A's
             const letterContainer = document.getElementById('letter-container');
             const letterCount = 15; // More letters for enhanced wow effect
             const letters = [];
@@ -107,78 +107,78 @@
                 letter.classList.add('a-letter');
                 letter.dataset.index = i;
                 
-                // Random size between 100px and 400px
+                // random size between 100px and 400px
                 const size = 100 + Math.random() * 300;
                 letter.style.width = `${size}px`;
                 letter.style.height = `${size}px`;
                 
-                // Random position
+                // random position
                 const x = Math.random() * 100;
                 const y = Math.random() * 100;
                 letter.style.left = `${x}%`;
                 letter.style.top = `${y}%`;
                 
-                // Random opacity
+                // random opacity
                 letter.style.opacity = 0.1 + Math.random() * 0.4;
                 
-                // Random rotation
+                // random rotation
                 const rotation = Math.random() * 360;
                 rotations.push(rotation);
                 letter.style.transform = `rotate(${rotation}deg)`;
                 
-                // Random blur
+                // random blur
                 const blur = Math.random() * 5;
                 letter.style.filter = `blur(${blur}px)`;
                 
-                // Random animation
+                // random animation
                 const duration = 20 + Math.random() * 40;
                 const delay = Math.random() * -30;
                 letter.style.animation = `float ${duration}s infinite ease-in-out ${delay}s`;
                 
-                // Interactive drag functionality
+                // interactive drag functionality
                 letter.addEventListener('mousedown', function(e) {
-                    // Pause any animations
+                    // pause any animations
                     this.style.animation = 'none';
                     
-                    // Make it more visible
+                    // make it more visible
                     this.style.opacity = '0.8';
                     this.style.zIndex = '100';
                     this.style.filter = 'blur(0px)';
                     
-                    // Calculate offset
+                    // calculate offset
                     const rect = this.getBoundingClientRect();
                     draggedLetter.element = this;
                     draggedLetter.offsetX = e.clientX - rect.left;
                     draggedLetter.offsetY = e.clientY - rect.top;
                     
-                    // Prevent default behavior
+                    // prevent default behavior
                     e.preventDefault();
                 });
                 
-                // Double click to make letter active with pulse animation
+                // double click to make letter active with pulse animation
                 letter.addEventListener('dblclick', function() {
                     if (this.classList.contains('active')) {
                         this.classList.remove('active');
                     } else {
-                        // Remove active class from all other letters
+                        // remove active class from all other letters
                         document.querySelectorAll('.a-letter.active').forEach(el => {
                             el.classList.remove('active');
                         });
                         this.classList.add('active');
                         
-                        // Create a burst of particles
+                        // create a burst of particles
                         createParticleBurst(this);
                     }
                 });
                 
-                // Context menu (right click) to change color
+                // context menu (right click) to change color
                 letter.addEventListener('contextmenu', function(e) {
                     e.preventDefault();
                     const hues = [0, 30, 60, 120, 180, 240, 280, 320]; // Various colors
                     const randomHue = hues[Math.floor(Math.random() * hues.length)];
                     this.style.filter = `hue-rotate(${randomHue}deg) blur(0px)`;
                     
-                    // Add a bright flash
+                    // add a bright flash
                     this.style.animation = 'flash 0.5s';
                     setTimeout(() => {
                         this.style.animation = `float ${duration}s infinite ease-in-out`;
@@ -187,37 +187,15 @@
                     return false;
                 });
                 
-                // Hover effects with sound feedback
-                letter.addEventListener('mouseenter', function() {
-                    // Visual feedback
-                    this.style.opacity = '0.9';
-                    this.style.zIndex = '50';
-                    this.style.filter = 'blur(0px)';
-                    
-                    // Create subtle sound effect
-                    playRandomTone();
-                    
-                    // Create small ripple
-                    createRipple(this, 'small');
-                });
                 
-                letter.addEventListener('mouseleave', function() {
-                    // Only reset if not being dragged and not active
-                    if (draggedLetter.element !== this && !this.classList.contains('active')) {
-                        this.style.opacity = 0.1 + Math.random() * 0.4;
-                        this.style.zIndex = '1';
-                        this.style.filter = `blur(${Math.random() * 5}px)`;
-                    }
-                });
-                
-                // Add wheel event for resizing
+                // add wheel event for resizing
                 letter.addEventListener('wheel', function(e) {
                     e.preventDefault();
                     
-                    // Get current size
+                    // get current size
                     const currentWidth = parseFloat(this.style.width);
                     
-                    // Calculate new size (scale up or down)
+                    // calculate new size (scale up or down)
                     let newSize;
                     if (e.deltaY < 0) {
                         // Scroll up - increase size
